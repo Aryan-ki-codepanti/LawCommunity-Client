@@ -61,11 +61,23 @@
                             
                             <div class="d-flex">
                                 <div class="bg-white rounded-10 text-dark mx-2 mt-6"
-                                    style="width: 300px; height: 400px; position: relative;">
-                                    <div class="rounded-10 mx-auto mt-2"
-                                        style="background-image: url(../assets/images/library/judgements/judgements.jpg); background-position: center; background-size: cover; width: 90%; height: 70%;">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-center">
+                                    style="width: 300px; height: 400px; position: relative;">';
+                            
+                            if (empty(trim($judgement["judgement_image"]))){
+
+                                $html = $html . '<div class="rounded-10 mx-auto mt-2"
+                                    style="background-image: url(//unsplash.it/960/863); background-position: center; background-size: cover; width: 90%; height: 70%;">
+                                </div>';
+                            }
+                            
+                            else{
+                                $html = $html . '<div class="rounded-10 mx-auto mt-2"
+                                    style="background-image: url(../admin/img/judgement/'. $judgement["judgement_image"] .'); background-position: center; background-size: cover; width: 90%; height: 70%;">
+                                </div>';
+
+                            }
+                                    
+                            $html = $html .'<div class="w-100 d-flex       justify-content-center">
                                         <div class="judgement-card rounded-10 text-center py-1 mx-auto"
                                             style="position: absolute; bottom: 20px;">
                                             <p class="mb-0 fw-600">'. $judgement['party1'] .'</p>
