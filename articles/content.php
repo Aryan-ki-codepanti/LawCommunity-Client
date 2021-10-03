@@ -1,6 +1,30 @@
 <?php
+    if (!isset($_GET["v"])){
+        header("location:../index.php");
+        exit();
+    }
+
+    // db
+    require_once "../admin/php/db.inc.php";
+    $fetchId = $_GET["v"];
+    $table = "article";
+    $result = mysqli_query($conn , "SELECT * FROM `$table` WHERE article_id='$fetchId';");
+
+    if (mysqli_num_rows($result) !== 1){
+        header("location:../index.php");
+        exit();
+    }
+    
+    $row = mysqli_fetch_assoc($result);
+    if ($row["article_status"] !== "accept"){
+        header("location:../index.php");
+        exit();
+    }
+
+
     $title = "Law Community";
     include('../includes/navbar-inner-pages.php');
+
 ?>
 
 <!-- hero -->
@@ -8,16 +32,29 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 text-white d-flex flex-column align-items-center justify-content-center">
-                <h3 class="fw-600 text-white">How to Learn German on your Own in 10 Simple Steps? Simplest steps possible.</3>
+                <h3 class="fw-600 text-white">
+                    <?php echo $row["article_heading"]; ?>
+                </h3>
                 <br><br>
-                <p class="fs-base fw-normal text-white">First of all, you must focus on pronouncing the German alphabets correctly so that it gets easy for you later to pronounce the whole set of German words.</p>
+                <p class="fs-base fw-normal text-white">
+                    <?php echo $row["article_subheading"]; ?>
+                </p>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 position-relative mt-5 mt-lg-0 d-flex align-items-center justify-content-center">
                 <div style="width: 500px; height: 400px;">
 
                     <div class="rounded-10" style="background-image: url(../assets/images/articles/hero-main.png); background-position: center; background-size: cover; width: 80%; height: 80%; position: absolute;  top: 0; right: 20px;">
                     </div>
-                    <div class="rounded-10" style="background-image: url(../assets/images/articles/article-1.jpg); background-position: center; background-size: cover; width: 80%; height: 80%; position: absolute;  bottom: 0; left: 20px;">
+                    <div class="rounded-10" style="background-image: url(
+                        <?php
+                            if (empty(trim($row["article_image"]))){
+                                echo "//unsplash.it/500/500";
+                            }
+                            else{
+                               echo "../admin/img/article/".$row["article_image"]; 
+                            }
+                        ?>
+                    ); background-position: center; background-repeat: no-repeat ; background-size: cover; width: 80%; height: 80%; position: absolute;  bottom: 0; left: 20px;">
                     </div>
                 </div>
             </div>
@@ -36,22 +73,13 @@
             <img class="d-none d-lg-block " src="../assets/images/demo-add.jpg">
         </div>
         <!-- text area -->
+        <!-- Content -->
         <div class="col-lg-6 col-sm-12 p-5 text-white lead fs-8">
-            <h3 class="text-white display-4 fw-600">About the speaker</h3>
-            <br>
-            <p>Dr.Shlesh Gautam Assistant Professor B.A.LL.B(Hons) Faculty of Law University of Allahabad</p>
-            <br><br>
-            <h4>Event Details</h4>
-            <p><strong>Topic: </strong>Econmic crimes during Covid-19 and beyond</p>
-            <p><strong>Date: </strong>Econmic crimes during Covid-19 and beyond</p>
-            <p><strong>Time: </strong>Econmic crimes during Covid-19 and beyond</p>
-            <p>Live On Google Meet</p>
-            <p><strong>Last Date of Registration: </strong>Econmic crimes during Covid-19 and beyond</p>
-            <br><br>
-            <h4>About the organiser</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-            <!-- add right -->
+            <?php
+                echo $row["article_content"];
+            ?>
         </div>
+        <!-- add right -->
         <div class="col-lg-3 d-flex justify-content-center align-items-center">
             <img class="d-none d-lg-block" src="../assets/images/demo-add.jpg">
         </div>
