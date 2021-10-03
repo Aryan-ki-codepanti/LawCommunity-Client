@@ -58,7 +58,7 @@
                         $html = $html . '
 
                         <div class="d-flex">
-                            <div class="bg-white rounded-10 mt-6 mx-2" style="width: 300px; height: 400px; position: relative;">
+                            <div class="bg-white rounded-10 mt-6 mx-2" style="cursor: pointer;width: 300px; height: 400px; position: relative;" id="'.$article["article_id"].'" onclick="redirectArticle(this.id)">
                                 <div class="rounded-10 mx-auto mt-2"
                                     style="background-image: url(../admin/img/article/'. $article["article_image"] .'); background-position: center; background-size: cover; width: 90%; height: 45%; filter: drop-shadow(0px 4px 100px rgba(0, 0, 0, 0.2)); ">
                                 </div>
@@ -106,3 +106,9 @@
 <?php
     include('../includes/footer-inner-pages.php');
 ?>
+
+<script>
+    const redirectArticle = (id) => {
+        document.location = `../articles/content.php?v=${id}`;
+    }
+</script>
