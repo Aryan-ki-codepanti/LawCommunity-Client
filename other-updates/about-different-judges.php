@@ -47,58 +47,52 @@
         <!-- text area -->
         <div class="col-lg-6 col-sm-12 text-white lead fs-8">
 
-            <div class="row mt-5">
-                <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
-                    <div class="rounded-10" style="background-image: url(../assets/images/library/judges/stair.png); background-position: center; background-size: cover;width: 300px; height: 450px;"></div>
-                </div>  
-                <div class="col-lg-8 col-sm-12 px-5 d-flex align-items-center" style="height: 450px;">
-                    <div class="my-auto" style="width: 100%;">
-                        <h3 class="fw-bolder mb-0">Next gen hub for Lawyers</h3>
-                        <br>
-                        <p class="fw-normal mb-0">Lorem ipsum dolor sit amet, consecte adipiscing elit, sed do eiusem
-                            ipsum dolor ipsum dolor sit amet, consecte adipiscing elit, sed do eiusmod ten Lorem
-                            ipsum dolor ist....</p>
-                        <br>
-                        <p class="mb-0">Mathew Walts</p>
-                        <p class="text-gray fs-sm mb-0">Designer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
-                    <div class="rounded-10" style="background-image: url(../assets/images/library/judges/stair.png); background-position: center; background-size: cover;width: 300px; height: 450px;"></div>
-                </div>  
-                <div class="col-lg-8 col-sm-12 px-5 d-flex align-items-center" style="height: 450px;">
-                    <div class="my-auto" style="width: 100%;">
-                        <h3 class="fw-bolder mb-0">Next gen hub for Lawyers</h3>
-                        <br>
-                        <p class="fw-normal mb-0">Lorem ipsum dolor sit amet, consecte adipiscing elit, sed do eiusem
-                            ipsum dolor ipsum dolor sit amet, consecte adipiscing elit, sed do eiusmod ten Lorem
-                            ipsum dolor ist....</p>
-                        <br>
-                        <p class="mb-0">Mathew Walts</p>
-                        <p class="text-gray fs-sm mb-0">Designer</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
-                    <div class="rounded-10" style="background-image: url(../assets/images/library/judges/stair.png); background-position: center; background-size: cover;width: 300px; height: 450px;"></div>
-                </div>  
-                <div class="col-lg-8 col-sm-12 px-5 d-flex align-items-center" style="height: 450px;">
-                    <div class="my-auto" style="width: 100%;">
-                        <h3 class="fw-bolder mb-0">Next gen hub for Lawyers</h3>
-                        <br>
-                        <p class="fw-normal mb-0">Lorem ipsum dolor sit amet, consecte adipiscing elit, sed do eiusem
-                            ipsum dolor ipsum dolor sit amet, consecte adipiscing elit, sed do eiusmod ten Lorem
-                            ipsum dolor ist....</p>
-                        <br>
-                        <p class="mb-0">Mathew Walts</p>
-                        <p class="text-gray fs-sm mb-0">Designer</p>
-                    </div>
-                </div>
-            </div>
+
+            <!-- Judges Populate here -->
             
+            <?php
+            
+                // db
+                require_once "../admin/php/db.inc.php";
+
+                $table = "different_judges";
+                $judges = mysqli_query($conn , "SELECT * FROM `$table` ORDER BY id DESC;");
+                
+                $html = '';
+                foreach ($judges as $judge ) {
+                    $html = $html . '
+
+                                        
+                            <div class="row mt-5">
+                                <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                                    <div class="rounded-10" style="background-image: url(../assets/images/library/judges/stair.png); background-position: center; background-size: cover;width: 300px; height: 450px;"></div>
+                                </div>  
+                                <div class="col-lg-8 col-sm-12 px-5 d-flex align-items-center" style="height: 450px;">
+                                    <div class="my-auto" style="width: 100%;">
+                                        <h3 class="fw-bolder mb-0"> '. $judge["heading"] .' </h3>
+                                        <br>
+                                        <p class="fw-normal mb-0"> '. $judge["subheading"] .'</p>
+                                        <br>
+                                        <p class="mb-0">'. $judge["judge_name"] .'</p>
+                                        <p class="text-gray fs-sm mb-0">' . $judge["judge_post"] . '</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                    
+                    ';    
+                }
+
+
+                echo $html;
+            
+            
+            
+            ?>
+
+            <!-- Judges end here -->
+
+
 
             <!-- add right -->
         </div>

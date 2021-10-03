@@ -49,110 +49,59 @@
 
             <div class="row d-flex justify-content-center">
                 <div class="col-11">
-                    <div class="accordion px-3 rounded-10" id="accordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <strong>Top 50 Creativity tips for a productive day</strong>
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                data-bs-parent="#accordion">
-                                <div class="accordion-body row">
-                                    <div class="col-sm-12 col-lg-11">
-                                        <small class="text-gray fs-sm">Mar 08, 2021</small>
-                                        <br><br>
-                                        <p>First of all, you must focus on pronouncing the German alphabets correctly so
-                                            that it gets easy for you later to pronounce the whole set of German words.
-                                            
-                                            Accumulate several easy ‘framework words’
-                                            
-                                            Multiply your vocabulary with nouns, verbs, and adjectives. Make it a must to
-                                            learn around ten vocabularies including nouns, verbs and adjectives every single
-                                            day.
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-12 col-lg-1" style="position: relative;">
-                                        <a href="" style="position: absolute; right: 0; bottom: 0;">
-                                            <i class="bi bi-arrow-right" style="color: #FF4952;"></i>
-                                        </a>
-                                    </div>
+                    <!-- Maxim Populate here -->
+                    <?php
 
+                            // db
+                            require_once "../admin/php/db.inc.php";
+
+                            $table = "maxim";
+                            $maxims = mysqli_query($conn , "SELECT * FROM `$table` ORDER BY maxim_id DESC;");                    
+                            $html = ''; 
+                            
+                            foreach ($maxims as $maxim) {
+                                $html = $html . '
+                                
+                                <div class="accordion my-2 px-3 rounded-10" id="accordion'.$maxim['maxim_id'].'">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading'.$maxim['maxim_id'].'">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapse'.$maxim['maxim_id'].'" aria-expanded="false" aria-controls="collapseTwo">
+                                            <strong>'. $maxim["maxim_heading"] .'</strong>
+                                        </button>
+                                    </h2>
+                                    <div id="collapse'.$maxim['maxim_id'].'" class="accordion-collapse collapse" aria-labelledby="heading'.$maxim['maxim_id'].'"
+                                        data-bs-parent="#accordion">
+                                        <div class="accordion-body row">
+                                            <div class="col-sm-12 col-lg-11">
+                                                <small class="text-gray fs-sm">'. date("M d, Y", strtotime($maxim["date_posted"])) .'</small>
+                                                <br><br>
+                                                <p>
+                                                '. $maxim["definition"] .'
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-12 col-lg-1" style="position: relative;">
+                                                <a href="" style="position: absolute; right: 0; bottom: 0;">
+                                                    <i class="bi bi-arrow-right" style="color: #FF4952;"></i>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="accordion px-3 rounded-10 mt-5" id="accordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="heading-3">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-                                    <strong>Top 50 Creativity tips for a productive day</strong>
-                                </button>
-                            </h2>
-                            <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="heading-3"
-                                data-bs-parent="#accordion">
-                                <div class="accordion-body row">
-                                    <div class="col-sm-12 col-lg-11">
-                                        <small class="text-gray fs-sm">Mar 08, 2021</small>
-                                        <br><br>
-                                        <p>First of all, you must focus on pronouncing the German alphabets correctly so
-                                            that it gets easy for you later to pronounce the whole set of German words.
-                                            
-                                            Accumulate several easy ‘framework words’
-                                            
-                                            Multiply your vocabulary with nouns, verbs, and adjectives. Make it a must to
-                                            learn around ten vocabularies including nouns, verbs and adjectives every single
-                                            day.
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-12 col-lg-1" style="position: relative;">
-                                        <a href="" style="position: absolute; right: 0; bottom: 0;">
-                                            <i class="bi bi-arrow-right" style="color: #FF4952;"></i>
-                                        </a>
-                                    </div>
+                                
+                                
+                                ';
+                            }
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion px-3 rounded-10 mt-5" id="accordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="heading-3">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-                                    <strong>Top 50 Creativity tips for a productive day</strong>
-                                </button>
-                            </h2>
-                            <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="heading-2"
-                                data-bs-parent="#accordion">
-                                <div class="accordion-body row">
-                                    <div class="col-sm-12 col-lg-11">
-                                        <small class="text-gray fs-sm">Mar 08, 2021</small>
-                                        <br><br>
-                                        <p>First of all, you must focus on pronouncing the German alphabets correctly so
-                                            that it gets easy for you later to pronounce the whole set of German words.
-                                            
-                                            Accumulate several easy ‘framework words’
-                                            
-                                            Multiply your vocabulary with nouns, verbs, and adjectives. Make it a must to
-                                            learn around ten vocabularies including nouns, verbs and adjectives every single
-                                            day.
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-12 col-lg-1" style="position: relative;">
-                                        <a href="" style="position: absolute; right: 0; bottom: 0;">
-                                            <i class="bi bi-arrow-right" style="color: #FF4952;"></i>
-                                        </a>
-                                    </div>
+                            echo $html;
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    ?>
+
+                    <!-- Maxim Populate Done -->
                 </div>
-
             </div>
             <!-- add right -->
         </div>
