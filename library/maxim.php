@@ -81,7 +81,7 @@
                                                 </p>
                                             </div>
                                             <div class="col-sm-12 col-lg-1" style="position: relative;">
-                                                <a href="" style="position: absolute; right: 0; bottom: 0;">
+                                                <a href="../maxim/content.php?v='.$maxim["maxim_id"].'" style="position: absolute; right: 0; bottom: 0;">
                                                     <i class="bi bi-arrow-right" style="color: #FF4952;"></i>
                                                 </a>
                                             </div>
