@@ -1,4 +1,26 @@
 <?php
+    if (!isset($_GET["v"])){
+        header("location:../index.php");
+        exit();
+    }
+
+    // db
+    require_once "../admin/php/db.inc.php";
+    $fetchId = $_GET["v"];
+    $table = "maxim";
+    $result = mysqli_query($conn , "SELECT * FROM `$table` WHERE maxim_id='$fetchId';");
+
+    if (mysqli_num_rows($result) !== 1){
+        header("location:../index.php");
+        exit();
+    }
+    
+    $row = mysqli_fetch_assoc($result);
+    if ($row["maxim_status"] !== "accept"){
+        header("location:../index.php");
+        exit();
+    }
+
     $title = "Law Community";
     include('../includes/navbar-inner-pages.php');
 ?>
@@ -8,7 +30,9 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-12 text-cyan d-flex flex-column align-items-center justify-content-center">
-                <h3 class="fw-600 text-orange">How to Learn German on your Own in 10 Simple Steps? Simplest steps possible.</3>
+                <h3 class="fw-600 text-orange">
+                    <?php echo $row["maxim_heading"] ; ?>
+                </h3>
                 <br><br>
             </div>
         </div>
@@ -29,20 +53,27 @@
         <div class="col-lg-6 col-sm-12 p-5 text-white lead fs-8">
             <span class="h4 library-active">Definition</span>
             <br><br>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium suscipit atque reprehenderit corporis? Iure harum velit omnis architecto numquam, molestiae nisi nobis sequi corrupti porro consequuntur ex eum repellat. Ipsum!
+            <p>
+                <?php echo $row["definition"]; ?>
             </p>
             <br><br>
             <span class="h4 library-active">Literal Translation</span>
             <br><br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde, optio?</p>
+            <p>
+                <?php echo $row["literal_translation"]; ?>
+            </p>
             <br><br>
             <span class="h4 library-active">Illustration</span>
             <br><br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi necessitatibus atque, eligendi inventore libero veritatis sequi a. Possimus, inventore.</p>
+            <p>
+                <?php echo $row["illustration"]; ?>
+            </p>
             <br><br>
             <span class="h4 library-active">Case Law</span>
             <br><br>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+            <p>
+                <?php echo $row["case_law"]; ?>
+            </p>
             <!-- add right -->
         </div>
         <div class="col-lg-3 d-flex justify-content-center align-items-center">
