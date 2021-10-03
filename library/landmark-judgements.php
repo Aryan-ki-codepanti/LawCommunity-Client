@@ -60,8 +60,8 @@
                             $html = $html . '
                             
                             <div class="d-flex">
-                                <div class="bg-white rounded-10 text-dark mx-2 mt-6"
-                                    style="width: 300px; height: 400px; position: relative;">';
+                                <div id="'.$judgement["judgement_id"].'" onclick="redirectJudgement(this.id)" class="bg-white rounded-10 text-dark mx-2 mt-6"
+                                    style="cursor: pointer; width: 300px; height: 400px; position: relative;">';
                             
                             if (empty(trim($judgement["judgement_image"]))){
 
@@ -72,7 +72,7 @@
                             
                             else{
                                 $html = $html . '<div class="rounded-10 mx-auto mt-2"
-                                    style="background-image: url(../admin/img/judgement/'. $judgement["judgement_image"] .'); background-position: center; background-size: cover; width: 90%; height: 70%;">
+                                    style="background-image: '.'url(../admin/img/judgement/'. $judgement["judgement_image"] .');'.'background-position: center; background-size: cover; width: 90%; height: 70%;">
                                 </div>';
 
                             }
@@ -125,3 +125,9 @@
 <?php
     include('../includes/footer-inner-pages.php');
 ?>
+
+<script>
+    const redirectJudgement = id => {
+        document.location = `../landmark-judgement/content.php?v=${id}`;
+    }
+</script>
