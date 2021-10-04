@@ -65,7 +65,22 @@
                                         
                             <div class="row mt-5">
                                 <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
-                                    <div class="rounded-10" style="background-image: url(../assets/images/library/judges/stair.png); background-position: center; background-size: cover;width: 300px; height: 450px;"></div>
+
+                                ';
+                                
+                            
+                    if (empty(trim($judge["judge_image"]))){
+
+                        $html = $html . '<div class="rounded-10" style="background-image: url(../assets/images/library/judges/stair.png); background-position: center; background-size: cover;width: 300px; height: 450px;"></div>
+                        ';
+                    }
+                    else{
+                        $html = $html . '<div class="rounded-10" style="background-image: url(../admin/img/judge/'. $judge["judge_image"] .'); background-position: center; background-size: cover;width: 300px; height: 450px;"></div>
+                        ';
+                    }
+
+
+                    $html = $html . '
                                 </div>  
                                 <div class="col-lg-8 col-sm-12 px-5 d-flex align-items-center" style="height: 450px;">
                                     <div class="my-auto" style="width: 100%;">
