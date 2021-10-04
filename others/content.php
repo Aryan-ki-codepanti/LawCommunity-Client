@@ -1,4 +1,23 @@
 <?php
+
+    if (!isset($_GET["v"])){
+        header("location:../index.php");
+        exit();
+    }
+
+    // db
+    require_once "../admin/php/db.inc.php";
+    $fetchId = $_GET["v"];
+    $table = "others";
+    $result = mysqli_query($conn , "SELECT * FROM `$table` WHERE id='$fetchId';");
+
+    if (mysqli_num_rows($result) !== 1){
+        header("location:../index.php");
+        exit();
+    }
+    
+    $row = mysqli_fetch_assoc($result);
+
     $title = "Law Community";
     include('../includes/navbar-inner-pages.php');
 ?>
@@ -8,8 +27,9 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-12 text-cyan d-flex flex-column align-items-center justify-content-center">
-                <h3 class="fw-600 text-orange">How to Learn German on your Own in 10 Simple Steps? Simplest steps
-                    possible.</3>
+                <h3 class="fw-600 text-orange">
+                    <?php echo $row["heading"] ; ?>
+                </h3>
                     <br><br>
             </div>
         </div>
@@ -28,9 +48,9 @@
         </div>
         <!-- text area -->
         <div class="col-lg-6 col-sm-12 p-5 text-white lead fs-8">
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam quasi accusantium totam, quae pariatur
-                aliquid itaque quo magni, sint voluptates praesentium enim! Sunt quam ratione ex repellat eius
-                asperiores. Atque repellendus ab delectus fugit facere in veritatis, porro aut dolore.</p>
+            <p>
+                <?php echo $row["subheading"]; ?>
+            </p>
             <!-- add right -->
         </div>
         <div class="col-lg-3 d-flex justify-content-center align-items-center">

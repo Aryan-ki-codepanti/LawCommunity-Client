@@ -64,7 +64,7 @@
                                         <img class="mb-4" src="../assets/images/icons/stack.svg" alt="">
                                         <h5 class="fw-600 mb-4">'. $other["heading"] .'</h5>
                                         <p class="fw-normal fs-base mb-4">'. $other["subheading"] .'</p>
-                                        <a href="" class="btn btn-white text-red rounded">View Details</a>
+                                        <a href="../others/content.php?v='. $other["id"] .'" class="btn btn-white text-red rounded">View Details</a>
                                     </div>
                                 </div>
                             </div>
