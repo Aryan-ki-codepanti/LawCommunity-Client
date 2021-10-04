@@ -58,7 +58,7 @@
                         $html = $html . '
 
                         <div class="d-flex">
-                            <div class="bg-white rounded-10 mt-6 mx-2" style="width: 300px; height: 400px; position: relative;">';
+                            <div id="'. $policy["id"] .'" onclick="redirectPolicy(this.id)" class="bg-white rounded-10 mt-6 mx-2" style="width: 300px; height: 400px; position: relative;">';
                             
                             
                         if (empty(trim($policy["image"]))){
@@ -121,3 +121,9 @@
 <?php
     include('../includes/footer-inner-pages.php');
 ?>
+
+<script>
+    const redirectPolicy = (id) => {
+        document.location = `../others/policies-and-amendments.php?v=${id}`;
+    }
+</script>
