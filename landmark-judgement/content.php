@@ -1,4 +1,29 @@
 <?php
+
+    if (!isset($_GET["v"])){
+        header("location:../index.php");
+        exit();
+    }
+
+    // db
+    require_once "../admin/php/db.inc.php";
+    $fetchId = $_GET["v"];
+    $table = "judgement";
+    $result = mysqli_query($conn , "SELECT * FROM `$table` WHERE judgement_id='$fetchId';");
+
+    if (mysqli_num_rows($result) !== 1){
+        header("location:../index.php");
+        exit();
+    }
+
+    $row = mysqli_fetch_assoc($result);
+    // no status
+    // if ($row["article_status"] !== "accept"){
+    //     header("location:../index.php");
+    //     exit();
+    // }
+
+
     $title = "Law Community";
     include('../includes/navbar-inner-pages.php');
 ?>
@@ -8,11 +33,15 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-12 text-white d-flex flex-column align-items-center justify-content-center">
-                <h3 class="fw-600 text-orange">TRUSTEES OF H.C. DHANDA TRUST</h3>
+                <h3 class="fw-600 text-orange">
+                    <?php echo $row["party1"]; ?>
+                </h3>
                 <br><br>
                 <p>V/s</p>
                 <br><br>
-                <h3 class="fw-600 text-orange">STATE OF MADHYA PRADESH</h3>
+                <h3 class="fw-600 text-orange">
+                    <?php echo $row["party2"]; ?>
+                </h3>
                 <br><br>
                 <p>CIVIL APPEAL NOS. 3195-3196 OF 2020 (ARISING OUT OF SLP(C)Nos.10972-10973 OF 2020)</p>
             </div>
